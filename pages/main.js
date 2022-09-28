@@ -28,6 +28,8 @@ export default function Main() {
       const manager = new ethers.Contract(contract, managerABI, provider);
       let totalCount = await manager.totalBroadcasts()
       console.log(parseInt(totalCount._hex))
+
+      let instances = []
       for(let i = 0; i < totalCount; i++){
         let broadcast = await manager.BroadcastIndex(i)
         // create on object of the broadcast to pass it to the 'Post' display component
@@ -41,8 +43,10 @@ export default function Main() {
           context: broadcast[6], 
           earnings: parseInt(broadcast[7]._hex)
       }
-      setBroadcasts(cur => [...cur, obj]);
+        instances.push(obj)
       }
+      setBroadcasts(instances);
+
     } catch(e){
       console.log('trouble fetching broadcasts', e);
     }
