@@ -70,8 +70,13 @@ export default function Main() {
             <p> 🎙 Loading . . . </p> 
             </div>
             :
-              broadcasts.reverse().map(post=>
-                <PostBox arg={post}/>
+              broadcasts.reverse().map(post=> {
+                console.log('MP POST', post)
+                return(
+                  <PostBox arg={post}/>
+                )
+                
+              }
               )
           }
           </>
